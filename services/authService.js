@@ -28,3 +28,8 @@ exports.login = async (data) => {
 
   return { user, token: generateToken(user._id) };
 };
+
+exports.logout = async (user) => {
+  // Implement logout logic if needed (e.g., token invalidation)
+  return { success: true, message: "Logged out successfully" };
+};
