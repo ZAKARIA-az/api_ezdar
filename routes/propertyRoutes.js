@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const { roleMiddleware, authorizePropertyOwnerOrRole } = require('../middlewares/roleMiddleware');
 const role=require('../role');
 
-router.get('/', authMiddleware,roleMiddleware('user','owner'),propertyController.getAllProperties); // عام
+router.get('/',propertyController.getAllProperties); // عام
 router.get('/:id', propertyController.getPropertyById);
 
 // إنشاء: محمي للمُلاّك أو الادمن

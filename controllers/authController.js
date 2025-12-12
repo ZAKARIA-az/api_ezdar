@@ -24,11 +24,35 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+// controllers/authController.js
 exports.logout = async (req, res, next) => {
   try {
-    const result = await authService.logout(req.user);
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Aucun jeton fourni' 
+      });
+    }
+    
+    const token = authHeader.split(' ')[1];
+    
+    // Vérifier si req.user est défini
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Non autorisé - Utilisateur non authentifié'
+      });
+    }
+    
+    const result = await authService.logout(req.user, token);
     res.json(result);
   } catch (err) {
-    next(err);
+    console.error('Erreur dans le contrôleur de déconnexion:', err);
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Erreur lors de la déconnexion'
+    });
   }
 };
