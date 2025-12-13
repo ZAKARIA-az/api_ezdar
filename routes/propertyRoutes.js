@@ -9,12 +9,12 @@ router.get('/',propertyController.getAllProperties); // عام
 router.get('/:id', propertyController.getPropertyById);
 
 // إنشاء: محمي للمُلاّك أو الادمن
-router.post('/', authMiddleware, roleMiddleware('owner'), propertyController.createProperty);
+router.post('/', authMiddleware, roleMiddleware(role.OWNER), propertyController.createProperty);
 
 // تحديث: محمي — المالك أو ادمن
-router.put('/:id', authMiddleware, authorizePropertyOwnerOrRole('admin'), propertyController.updateProperty);
+router.put('/:id', authMiddleware, authorizePropertyOwnerOrRole(role.OWNER), propertyController.updateProperty);
 
 // حذف: محمي — المالك أو ادمن
-router.delete('/:id', authMiddleware, authorizePropertyOwnerOrRole('admin'), propertyController.deleteProperty);
+router.delete('/:id', authMiddleware, authorizePropertyOwnerOrRole(role.OWNER), propertyController.deleteProperty);
 
 module.exports = router;

@@ -26,7 +26,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
-/*app.use('/api/favorites', favoriteRoutes);
-app.use('/api/messages', messageRoutes);*/
+app.use('/api/favorites', favoriteRoutes);
+/*app.use('/api/messages', messageRoutes);*/
 
 module.exports = app;
