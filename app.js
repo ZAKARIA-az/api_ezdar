@@ -18,6 +18,7 @@ require('./models/User');
 require('./models/Property');
 require('./models/Favorite');
 require('./models/Message');
+require('./models/Notification');
 
 // اختبار بسيط
 app.get('/api/health', (req, res) => {
@@ -28,5 +29,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/favorites', favoriteRoutes);
 /*app.use('/api/messages', messageRoutes);*/
+const notificationRoutes = require('./routes/notificationRoutes');
+app.use('/api/notifications', notificationRoutes);
 
 module.exports = app;
