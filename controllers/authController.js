@@ -9,7 +9,10 @@ exports.register = async (req, res, next) => {
     const result = await authService.register(req.body);
     res.json(result);
   } catch (err) {
-    next(err);
+    if (err && typeof err.message === 'string' && err.message.startsWith('auth.')) {
+      return res.status(400).json({ success: false, message: req.__(err.message) });
+    }
+    return res.status(500).json({ success: false, message: req.__('common.server_error') });
   }
 };
 
@@ -21,7 +24,10 @@ exports.login = async (req, res, next) => {
     const result = await authService.login(req.body);
     res.json(result);
   } catch (err) {
-    next(err);
+    if (err && typeof err.message === 'string' && err.message.startsWith('auth.')) {
+      return res.status(400).json({ success: false, message: req.__(err.message) });
+    }
+    return res.status(500).json({ success: false, message: req.__('common.server_error') });
   }
 };
 
@@ -32,27 +38,29 @@ exports.logout = async (req, res, next) => {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(400).json({ 
         success: false, 
-        message: 'Aucun jeton fourni' 
+        message: req.__('auth.token_missing') 
       });
     }
-    
+
     const token = authHeader.split(' ')[1];
-    
-    // Vérifier si req.user est défini
+
     if (!req.user) {
       return res.status(401).json({
         success: false,
-        message: 'Non autorisé - Utilisateur non authentifié'
+        message: req.__('auth.not_authenticated')
       });
     }
-    
+
     const result = await authService.logout(req.user, token);
-    res.json(result);
+    if (result && result.messageKey) {
+      const { messageKey, ...rest } = result;
+      return res.json({ ...rest, message: req.__(messageKey) });
+    }
+    return res.json(result);
   } catch (err) {
-    console.error('Erreur dans le contrôleur de déconnexion:', err);
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Erreur lors de la déconnexion'
-    });
+    if (err && typeof err.message === 'string' && err.message.startsWith('auth.')) {
+      return res.status(400).json({ success: false, message: req.__(err.message) });
+    }
+    return res.status(500).json({ success: false, message: req.__('common.server_error') });
   }
 };

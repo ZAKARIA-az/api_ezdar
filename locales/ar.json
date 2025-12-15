@@ -1,0 +1,68 @@
+{
+  "welcome": "مرحباً بك في تطبيقنا",
+  "common": {
+    "server_error": "خطأ في الخادم",
+    "server_running": "الخادم يعمل بشكل جيد",
+    "unauthorized": "غير مصرح",
+    "forbidden": "ممنوع",
+    "not_found": "غير موجود"
+  },
+  "user": {
+    "not_found": "المستخدم غير موجود"
+  },
+  "favorites": {
+    "add_success": "تمت الإضافة إلى المفضلة بنجاح",
+    "remove_success": "تمت الإزالة من المفضلة بنجاح",
+    "remove_all_success": "تم حذف جميع المفضلة بنجاح",
+    "fetch_success": "تم جلب المفضلة بنجاح",
+    "check_success": "تم التحقق من المفضلة بنجاح",
+    "errors": {
+      "property_not_found": "العقار غير موجود",
+      "already_exists": "هذا العقار موجود بالفعل في المفضلة",
+      "not_in_favorites": "لم يتم العثور على العقار في المفضلة"
+    }
+  },
+  "language": {
+    "update_success": "تم تحديث اللغة بنجاح",
+    "invalid_code": "رمز لغة غير صالح"
+  },
+  "auth": {
+    "login_success": "تم تسجيل الدخول بنجاح",
+    "register_success": "تم التسجيل بنجاح",
+    "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "user_exists": "المستخدم موجود مسبقاً",
+    "token_missing": "لم يتم إرسال التوكن",
+    "token_invalid": "توكن غير صالح",
+    "token_expired": "انتهت الجلسة",
+    "session_expired_relogin": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى",
+    "not_authorized": "غير مصرح",
+    "not_authenticated": "غير مصرح - المستخدم غير مسجل الدخول",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "user_info_missing": "معلومات المستخدم ناقصة",
+    "logout_failed": "خطأ أثناء تسجيل الخروج"
+  },
+  "role": {
+    "forbidden_insufficient": "ممنوع - صلاحيات غير كافية",
+    "forbidden_not_owner": "ممنوع - لست مالكاً"
+  },
+  "notifications": {
+    "not_found": "الإشعار غير موجود",
+    "all_marked_read": "تم تعليم جميع الإشعارات كمقروءة",
+    "templates": {
+      "property_created": "تم إنشاء عقارك بنجاح: %s",
+      "property_updated": "تم تحديث عقارك بنجاح: %s"
+    }
+  },
+  "property": {
+    "not_found": "العقار غير موجود",
+    "invalid_filter": "تنسيق الفلتر غير صالح",
+    "created": "تم إنشاء العقار بنجاح",
+    "updated": "تم تحديث العقار بنجاح",
+    "deleted": "تم حذف العقار بنجاح"
+  },
+  "validation": {
+    "required": "%s مطلوب",
+    "email": "الرجاء إدخال بريد إلكتروني صالح",
+    "min": "%s يجب أن يحتوي على الأقل على %d حرفاً"
+  }
+}

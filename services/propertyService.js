@@ -46,7 +46,7 @@ exports.getAllProperties = async (filters = {}) => {
     try {
       filters = JSON.parse(filters);
     } catch (e) {
-      throw new Error('تنسيق الفلتر غير صالح');
+      throw new Error('property.invalid_filter');
     }
   }
 
@@ -101,7 +101,7 @@ exports.getPropertyById = async (id) => {
     .lean();
   
   if (!property) {
-    throw new Error('العقار غير موجود');
+    throw new Error('property.not_found');
   }
   
   return property;
@@ -124,7 +124,7 @@ exports.createProperty = async (data, actorId) => {
     data: {
       propertyId: savedProperty._id,
       title: savedProperty.title,
-      message: `تم إنشاء عقارك بنجاح: ${savedProperty.title}`,
+      messageKey: 'notifications.templates.property_created',
       link: `/properties/${savedProperty._id}`
     },
     priority: 'low'
@@ -135,7 +135,7 @@ exports.createProperty = async (data, actorId) => {
 
 
 
-exports.updateProperty = async (id, data) => {
+exports.updateProperty = async (id, data, actorId) => {
   const property = await Property.findByIdAndUpdate(
     id,
     { $set: data },
@@ -147,8 +147,22 @@ exports.updateProperty = async (id, data) => {
   );
   
   if (!property) {
-    throw new Error('العقار غير موجود');
+    throw new Error('property.not_found');
   }
+
+  // 🔔 إنشاء إشعار
+  await createNotification({
+    userId: property.ownerId, // صاحب العقار
+    actorId: actorId,              // من قام بالتحديث
+    type: 'PROPERTY_UPDATED',
+    data: {
+      propertyId: property._id,
+      title: property.title,
+      messageKey: 'notifications.templates.property_updated',
+      link: `/properties/${property._id}`
+    },
+    priority: 'low'
+  });
   
   return property;
 };
@@ -157,7 +171,7 @@ exports.deleteProperty = async (id) => {
   const property = await Property.findByIdAndDelete(id);
   
   if (!property) {
-    throw new Error('العقار غير موجود');
+    throw new Error('property.not_found');
   }
   
   return { id: property._id };

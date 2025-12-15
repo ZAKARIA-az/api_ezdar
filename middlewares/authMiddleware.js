@@ -10,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ 
         success: false, 
-        message: 'Aucun jeton fourni' 
+        message: req.__('auth.token_missing') 
       });
     }
 
@@ -21,7 +21,7 @@ const authMiddleware = async (req, res, next) => {
     if (isBlacklisted) {
       return res.status(401).json({ 
         success: false, 
-        message: 'Session expirée, veuillez vous reconnecter' 
+        message: req.__('auth.session_expired_relogin') 
       });
     }
 
@@ -32,23 +32,33 @@ const authMiddleware = async (req, res, next) => {
     if (!user) {
       return res.status(401).json({ 
         success: false, 
-        message: 'Non autorisé' 
+        message: req.__('auth.not_authorized') 
       });
     }
 
     req.user = user;
+
+    // Apply saved language for authenticated users
+    if (req.setLocale && user.language && ['en', 'ar', 'fr', 'et'].includes(user.language)) {
+      req.setLocale(user.language);
+      res.cookie('lang', user.language, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
+    }
+
     next();
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
       return res.status(401).json({ 
         success: false, 
-        message: 'Jeton invalide' 
+        message: req.__('auth.token_invalid') 
       });
     }
     if (err.name === 'TokenExpiredError') {
       return res.status(401).json({ 
         success: false, 
-        message: 'Session expirée' 
+        message: req.__('auth.token_expired') 
       });
     }
     next(err);

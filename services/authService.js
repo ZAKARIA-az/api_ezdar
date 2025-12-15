@@ -8,7 +8,7 @@ exports.register = async (data) => {
   const { fullName, email, password, role } = data;
 
   const userExists = await User.findOne({ email });
-  if (userExists) throw new Error("Email already exists");
+  if (userExists) throw new Error("auth.user_exists");
 
   const hashed = await bcrypt.hash(password, 10);
 
@@ -23,51 +23,46 @@ exports.login = async (data) => {
   const { email, password } = data;
 
   const user = await User.findOne({ email });
-  if (!user) throw new Error("Invalid credentials");
+  if (!user) throw new Error("auth.invalid_credentials");
 
   const match = await bcrypt.compare(password, user.password);
-  if (!match) throw new Error("Invalid credentials");
+  if (!match) throw new Error("auth.invalid_credentials");
 
   return { user, token: generateToken(user._id) };
 };
 
-
-
-
 exports.logout = async (user, token) => {
   try {
     if (!token) {
-      throw new Error('No token provided');
+      throw new Error('auth.token_missing');
     }
 
-    // Vérifier et décoder le token pour obtenir l'expiration
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
-    // Vérifier si l'utilisateur est défini et a un _id
+
     if (!user || !user._id) {
-      throw new Error('Informations utilisateur manquantes');
+      throw new Error('auth.user_info_missing');
     }
 
-    // Ajouter le token à la liste noire
     const blacklistToken = new BlacklistToken({
       token,
       user: user._id,
-      expiresAt: new Date(decoded.exp * 1000) // Convertir la date d'expiration
+      expiresAt: new Date(decoded.exp * 1000)
     });
 
     await blacklistToken.save();
 
-    return { 
-      success: true, 
-      message: "Déconnexion réussie" 
+    return {
+      success: true,
+      messageKey: "auth.logout_success"
     };
   } catch (error) {
-    console.error('Erreur lors de la déconnexion:', error);
-    throw new Error(`Erreur lors de la déconnexion: ${error.message}`);
+    if (error && typeof error.message === 'string' && error.message.startsWith('auth.')) {
+      throw error;
+    }
+    throw new Error('auth.logout_failed');
   }
 };
 
-// Fonction utilitaire pour vérifier si un token est dans la liste noire
 exports.isTokenBlacklisted = async (token) => {
   const blacklistedToken = await BlacklistToken.findOne({ token });
   return !!blacklistedToken;

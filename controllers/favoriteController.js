@@ -9,13 +9,13 @@ exports.addToFavorites = async (req, res) => {
     const favorite = await favoriteService.addToFavorites(userId, propertyId);
     res.status(200).json({
       success: true,
-      message: 'تمت الإضافة إلى المفضلة بنجاح',
+      message: req.__('favorites.add_success'),
       data: favorite
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: error.message
+      message: (error && typeof error.message === 'string') ? req.__(error.message) : req.__('common.server_error')
     });
   }
 };
@@ -29,12 +29,12 @@ exports.removeFromFavorites = async (req, res) => {
     await favoriteService.removeFromFavorites(userId, propertyId);
     res.status(200).json({
       success: true,
-      message: 'تمت الإزالة من المفضلة بنجاح'
+      message: req.__('favorites.remove_success')
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: error.message
+      message: (error && typeof error.message === 'string') ? req.__(error.message) : req.__('common.server_error')
     });
   }
 };
@@ -47,12 +47,12 @@ exports.removeAllFavorites = async (req, res) => {
     
     res.status(200).json({
       success: true,
-      message: 'تم حذف جميع المفضلة بنجاح'
+      message: req.__('favorites.remove_all_success')
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: error.message
+      message: (error && typeof error.message === 'string') ? req.__(error.message) : req.__('common.server_error')
     });
   }
 };
@@ -67,13 +67,13 @@ exports.getUserFavorites = async (req, res) => {
     const result = await favoriteService.getUserFavorites(userId, page, limit);
     res.status(200).json({
       success: true,
-      message: 'تم جلب المفضلة بنجاح',
+      message: req.__('favorites.fetch_success'),
       data: result
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: error.message
+      message: (error && typeof error.message === 'string') ? req.__(error.message) : req.__('common.server_error')
     });
   }
 };
@@ -87,13 +87,13 @@ exports.checkIfFavorite = async (req, res) => {
     const isFavorite = await favoriteService.isFavorite(userId, propertyId);
     res.status(200).json({
       success: true,
-      message: 'تم التحقق من المفضلة بنجاح',
+      message: req.__('favorites.check_success'),
       data: { isFavorite }
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: error.message
+      message: (error && typeof error.message === 'string') ? req.__(error.message) : req.__('common.server_error')
     });
   }
 };

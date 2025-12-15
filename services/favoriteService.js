@@ -4,12 +4,12 @@ const Property = require("../models/Property");
 exports.addToFavorites = async (userId, propertyId) => {
   const property = await Property.findById(propertyId);
   if (!property) {
-    throw new Error("العقار غير موجود");
+    throw new Error("favorites.errors.property_not_found");
   }
 
   const existingFavorite = await Favorite.findOne({ userId, propertyId });
   if (existingFavorite) {
-    throw new Error("هذا العقار موجود بالفعل في المفضلة");
+    throw new Error("favorites.errors.already_exists");
   }
 
   const favorite = new Favorite({ userId, propertyId });
@@ -19,7 +19,7 @@ exports.addToFavorites = async (userId, propertyId) => {
 exports.removeFromFavorites = async (userId, propertyId) => {
   const favorite = await Favorite.findOneAndDelete({ userId, propertyId });
   if (!favorite) {
-    throw new Error("لم يتم العثور على العقار في المفضلة");
+    throw new Error("favorites.errors.not_in_favorites");
   }
   return favorite;
 };

@@ -1,0 +1,68 @@
+{
+  "welcome": "Bienvenue dans notre application",
+  "common": {
+    "server_error": "Erreur serveur",
+    "server_running": "Le serveur fonctionne",
+    "unauthorized": "Non autorisé",
+    "forbidden": "Interdit",
+    "not_found": "Introuvable"
+  },
+  "user": {
+    "not_found": "Utilisateur introuvable"
+  },
+  "favorites": {
+    "add_success": "Ajouté aux favoris avec succès",
+    "remove_success": "Supprimé des favoris avec succès",
+    "remove_all_success": "Tous les favoris ont été supprimés",
+    "fetch_success": "Favoris récupérés avec succès",
+    "check_success": "Statut favori vérifié avec succès",
+    "errors": {
+      "property_not_found": "Propriété non trouvée",
+      "already_exists": "Cette propriété est déjà dans les favoris",
+      "not_in_favorites": "Propriété introuvable dans les favoris"
+    }
+  },
+  "language": {
+    "update_success": "Langue mise à jour avec succès",
+    "invalid_code": "Code de langue invalide"
+  },
+  "auth": {
+    "login_success": "Connexion réussie",
+    "register_success": "Inscription réussie",
+    "invalid_credentials": "Email ou mot de passe invalide",
+    "user_exists": "L'utilisateur existe déjà",
+    "token_missing": "Aucun jeton fourni",
+    "token_invalid": "Jeton invalide",
+    "token_expired": "Session expirée",
+    "session_expired_relogin": "Session expirée, veuillez vous reconnecter",
+    "not_authorized": "Non autorisé",
+    "not_authenticated": "Non autorisé - Utilisateur non authentifié",
+    "logout_success": "Déconnexion réussie",
+    "user_info_missing": "Informations utilisateur manquantes",
+    "logout_failed": "Erreur lors de la déconnexion"
+  },
+  "role": {
+    "forbidden_insufficient": "Interdit - rôle insuffisant",
+    "forbidden_not_owner": "Interdit - pas propriétaire"
+  },
+  "notifications": {
+    "not_found": "Notification introuvable",
+    "all_marked_read": "Toutes les notifications ont été marquées comme lues",
+    "templates": {
+      "property_created": "Votre propriété a été créée avec succès : %s",
+      "property_updated": "Votre propriété a été mise à jour avec succès : %s"
+    }
+  },
+  "property": {
+    "not_found": "Propriété non trouvée",
+    "invalid_filter": "Format de filtre invalide",
+    "created": "Propriété créée avec succès",
+    "updated": "Propriété mise à jour avec succès",
+    "deleted": "Propriété supprimée avec succès"
+  },
+  "validation": {
+    "required": "%s est requis",
+    "email": "Veuillez fournir une adresse email valide",
+    "min": "%s doit contenir au moins %d caractères"
+  }
+}

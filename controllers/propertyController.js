@@ -53,7 +53,7 @@ exports.updateProperty = async (req, res, next) => {
     const { error } = updatePropertyValidation(req.body);
     if (error) return res.status(400).json({ success: false, message: error.details[0].message });
 
-    const result = await propertyService.updateProperty(req.params.id, req.body);
+    const result = await propertyService.updateProperty(req.params.id, req.body,req.user._id);
     return res.status(200).json(result);
   } catch (err) {
     next(err);

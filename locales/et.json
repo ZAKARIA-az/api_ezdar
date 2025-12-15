@@ -1,0 +1,68 @@
+{
+  "welcome": "Tere tulemast meie rakendusse",
+  "common": {
+    "server_error": "Serveri viga",
+    "server_running": "Server töötab",
+    "unauthorized": "Autoriseerimata",
+    "forbidden": "Keelatud",
+    "not_found": "Ei leitud"
+  },
+  "user": {
+    "not_found": "Kasutajat ei leitud"
+  },
+  "favorites": {
+    "add_success": "Lisati lemmikutesse edukalt",
+    "remove_success": "Eemaldati lemmikutest edukalt",
+    "remove_all_success": "Kõik lemmikud eemaldati edukalt",
+    "fetch_success": "Lemmikud toodi edukalt",
+    "check_success": "Lemmiku olek kontrollitud",
+    "errors": {
+      "property_not_found": "Kinnisvara ei leitud",
+      "already_exists": "See kinnisvara on juba lemmikutes",
+      "not_in_favorites": "Kinnisvara ei leitud lemmikutest"
+    }
+  },
+  "language": {
+    "update_success": "Keel uuendati edukalt",
+    "invalid_code": "Vigane keelekood"
+  },
+  "auth": {
+    "login_success": "Sisselogimine õnnestus",
+    "register_success": "Registreerimine õnnestus",
+    "invalid_credentials": "Vale e-posti aadress või parool",
+    "user_exists": "Kasutaja on juba olemas",
+    "token_missing": "Token puudub",
+    "token_invalid": "Vigane token",
+    "token_expired": "Seanss aegus",
+    "session_expired_relogin": "Seanss aegus, palun logi uuesti sisse",
+    "not_authorized": "Pole lubatud",
+    "not_authenticated": "Pole lubatud - kasutaja pole autentitud",
+    "logout_success": "Väljalogimine õnnestus",
+    "user_info_missing": "Kasutaja info puudub",
+    "logout_failed": "Väljalogimisel tekkis viga"
+  },
+  "role": {
+    "forbidden_insufficient": "Keelatud - roll ei ole piisav",
+    "forbidden_not_owner": "Keelatud - ei ole omanik"
+  },
+  "notifications": {
+    "not_found": "Teavitus ei leitud",
+    "all_marked_read": "Kõik teavitused märgiti loetuks",
+    "templates": {
+      "property_created": "Sinu kinnisvara loodi edukalt: %s",
+      "property_updated": "Sinu kinnisvara uuendati edukalt: %s"
+    }
+  },
+  "property": {
+    "not_found": "Kinnisvara ei leitud",
+    "invalid_filter": "Vigane filtri formaat",
+    "created": "Kinnisvara edukalt loodud",
+    "updated": "Kinnisvara edukalt uuendatud",
+    "deleted": "Kinnisvara edukalt kustutatud"
+  },
+  "validation": {
+    "required": "%s on kohustuslik",
+    "email": "Palun sisesta korrektne e-posti aadress",
+    "min": "%s peab olema vähemalt %d tähemärki pikk"
+  }
+}

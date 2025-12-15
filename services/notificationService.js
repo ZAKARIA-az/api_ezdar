@@ -27,7 +27,7 @@ exports.markAsRead = async (userId, id) => {
     { isRead: true },
     { new: true }
   );
-  if (!n) return { success: false, message: 'Notification not found' };
+  if (!n) return { success: false, messageKey: 'notifications.not_found' };
 
   // تحديث المستخدم عبر Socket.IO
   if (io) {
@@ -40,11 +40,11 @@ exports.markAsRead = async (userId, id) => {
 
 exports.markAllRead = async (userId) => {
   await Notification.updateMany({ userId, isRead: false }, { isRead: true });
-  return { success: true, message: 'All notifications marked as read' };
+  return { success: true, messageKey: 'notifications.all_marked_read' };
 };
 
 exports.deleteNotification = async (userId, id) => {
   const n = await Notification.findOneAndDelete({ _id: id, userId });
-  if (!n) return { success: false, message: 'Notification not found' };
+  if (!n) return { success: false, messageKey: 'notifications.not_found' };
   return { success: true, data: n };
 };

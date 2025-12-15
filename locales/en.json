@@ -1,0 +1,68 @@
+{
+  "welcome": "Welcome to ez Kra",
+  "common": {
+    "server_error": "Server error",
+    "server_running": "Server is running",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "not_found": "Not found"
+  },
+  "user": {
+    "not_found": "User not found"
+  },
+  "favorites": {
+    "add_success": "Added to favorites successfully",
+    "remove_success": "Removed from favorites successfully",
+    "remove_all_success": "All favorites removed successfully",
+    "fetch_success": "Favorites fetched successfully",
+    "check_success": "Favorite status checked successfully",
+    "errors": {
+      "property_not_found": "Property not found",
+      "already_exists": "This property is already in favorites",
+      "not_in_favorites": "Property not found in favorites"
+    }
+  },
+  "language": {
+    "update_success": "Language updated successfully",
+    "invalid_code": "Invalid language code"
+  },
+  "auth": {
+    "login_success": "Login successful",
+    "register_success": "Registration successful",
+    "invalid_credentials": "Invalid email or password",
+    "user_exists": "User already exists",
+    "token_missing": "No token provided",
+    "token_invalid": "Invalid token",
+    "token_expired": "Session expired",
+    "session_expired_relogin": "Session expired, please login again",
+    "not_authorized": "Not authorized",
+    "not_authenticated": "Not authorized - user not authenticated",
+    "logout_success": "Logout successful",
+    "user_info_missing": "Missing user information",
+    "logout_failed": "Error during logout"
+  },
+  "role": {
+    "forbidden_insufficient": "Forbidden - insufficient role",
+    "forbidden_not_owner": "Forbidden - not owner"
+  },
+  "notifications": {
+    "not_found": "Notification not found",
+    "all_marked_read": "All notifications marked as read",
+    "templates": {
+      "property_created": "Your property has been created successfully: %s",
+      "property_updated": "Your property has been updated successfully: %s"
+    }
+  },
+  "property": {
+    "not_found": "Property not found",
+    "invalid_filter": "Invalid filter format",
+    "created": "Property created successfully",
+    "updated": "Property updated successfully",
+    "deleted": "Property deleted successfully"
+  },
+  "validation": {
+    "required": "%s is required",
+    "email": "Please provide a valid email address",
+    "min": "%s must be at least %d characters long"
+  }
+}
