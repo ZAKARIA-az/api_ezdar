@@ -3,7 +3,6 @@ const Joi = require('joi');
 // Validation عند إنشاء عقار جديد
 const createPropertyValidation = (data) => {
   const schema = Joi.object({
-    ownerId: Joi.string().required(), // عادة ObjectId من MongoDB
     title: Joi.string().min(3).required(),
     city: Joi.string().min(2).required(),
     type: Joi.string().valid(

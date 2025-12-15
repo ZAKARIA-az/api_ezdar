@@ -40,7 +40,7 @@ exports.createProperty = async (req, res, next) => {
     const { error } = createPropertyValidation(req.body);
     if (error) return res.status(400).json({ success: false, message: error.details[0].message });
 
-    const result = await propertyService.createProperty(req.body);
+    const result = await propertyService.createProperty(req.body,req.user._id);
     // result بصيغة { success, data } من الـ service
     return res.status(201).json(result);
   } catch (err) {

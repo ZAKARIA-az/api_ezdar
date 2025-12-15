@@ -1,4 +1,7 @@
 const Property = require("../models/Property");
+// services/propertyService.js
+const { createNotification } = require('./notificationService');
+
 
 // Créer un index pour la recherche par ville
 // À ajouter dans le modèle Property : propertySchema.index({ city: 1 });
@@ -104,11 +107,33 @@ exports.getPropertyById = async (id) => {
   return property;
 };
 
-exports.createProperty = async (data) => {
-  const property = new Property(data);
-  await property.validate(); // Valider avant la sauvegarde
-  return property.save();
+
+exports.createProperty = async (data, actorId) => {
+  const property = new Property({
+    ...data,
+    ownerId: actorId
+  });
+  await property.validate();
+  const savedProperty = await property.save();
+
+  // 🔔 إنشاء إشعار
+  await createNotification({
+    userId: savedProperty.ownerId, // صاحب العقار
+    actorId: actorId,              // من قام بالإنشاء
+    type: 'PROPERTY_CREATED',
+    data: {
+      propertyId: savedProperty._id,
+      title: savedProperty.title,
+      message: `تم إنشاء عقارك بنجاح: ${savedProperty.title}`,
+      link: `/properties/${savedProperty._id}`
+    },
+    priority: 'low'
+  });
+
+  return savedProperty;
 };
+
+
 
 exports.updateProperty = async (id, data) => {
   const property = await Property.findByIdAndUpdate(
