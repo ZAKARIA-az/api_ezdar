@@ -30,7 +30,10 @@ const propertySchema = new mongoose.Schema({
     type: String,
     index: true
   },
-  images: [String],
+  images: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "uploads.files"
+  }],
   status: { 
     type: String,
     enum: ['Disponible', 'Loué'],

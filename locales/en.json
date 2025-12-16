@@ -64,10 +64,21 @@
   },
   "property": {
     "not_found": "Property not found",
+    "invalid_id": "Invalid property id",
     "invalid_filter": "Invalid filter format",
     "created": "Property created successfully",
     "updated": "Property updated successfully",
-    "deleted": "Property deleted successfully"
+    "deleted": "Property deleted successfully",
+    "images": {
+      "no_files": "No images uploaded",
+      "invalid_type": "Invalid image type",
+      "too_large": "Image is too large (max 5MB)",
+      "too_many": "Too many images (max 10)",
+      "upload_success": "Images uploaded successfully",
+      "invalid_id": "Invalid image id",
+      "not_found": "Image not found",
+      "deleted": "Image deleted successfully"
+    }
   },
   "validation": {
     "required": "%s is required",

@@ -64,10 +64,21 @@
   },
   "property": {
     "not_found": "Kinnisvara ei leitud",
+    "invalid_id": "Vigane kinnisvara ID",
     "invalid_filter": "Vigane filtri formaat",
     "created": "Kinnisvara edukalt loodud",
     "updated": "Kinnisvara edukalt uuendatud",
-    "deleted": "Kinnisvara edukalt kustutatud"
+    "deleted": "Kinnisvara edukalt kustutatud",
+    "images": {
+      "no_files": "Ühtegi pilti ei laaditud üles",
+      "invalid_type": "Vigane pilditüüp",
+      "too_large": "Pilt on liiga suur (max 5MB)",
+      "too_many": "Liiga palju pilte (max 10)",
+      "upload_success": "Pildid laaditi üles edukalt",
+      "invalid_id": "Vigane pildi ID",
+      "not_found": "Pilti ei leitud",
+      "deleted": "Pilt kustutati edukalt"
+    }
   },
   "validation": {
     "required": "%s on kohustuslik",

@@ -1,5 +1,6 @@
 const propertyService = require("../services/propertyService");
 const {  createPropertyValidation, updatePropertyValidation } = require('../validations/propertyValidation');
+const propertyImageService = require('../services/propertyImageService');
 
 
 exports.getAllProperties = async (req, res, next) => {
@@ -63,6 +64,44 @@ exports.updateProperty = async (req, res, next) => {
 exports.deleteProperty = async (req, res, next) => {
   try {
     const result = await propertyService.deleteProperty(req.params.id);
+    return res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.addPropertyImages = async (req, res, next) => {
+  try {
+    const result = await propertyImageService.addImages({
+      propertyId: req.params.id,
+      actorId: req.user && req.user._id,
+      files: req.files
+    });
+
+    if (result && result.messageKey) {
+      const { messageKey, ...rest } = result;
+      return res.status(200).json({ ...rest, message: req.__(messageKey) });
+    }
+
+    return res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deletePropertyImage = async (req, res, next) => {
+  try {
+    const result = await propertyImageService.deleteImage({
+      propertyId: req.params.id,
+      fileId: req.params.fileId,
+      actorId: req.user && req.user._id
+    });
+
+    if (result && result.messageKey) {
+      const { messageKey, ...rest } = result;
+      return res.status(200).json({ ...rest, message: req.__(messageKey) });
+    }
+
     return res.status(200).json(result);
   } catch (err) {
     next(err);
