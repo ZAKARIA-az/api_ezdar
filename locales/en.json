@@ -53,6 +53,15 @@
       "property_updated": "Your property has been updated successfully: %s"
     }
   },
+  "files": {
+    "no_file": "No file uploaded",
+    "invalid_type": "Invalid file type",
+    "too_large": "File is too large (max 5MB)",
+    "invalid_id": "Invalid file id",
+    "not_found": "File not found",
+    "deleted": "File deleted successfully",
+    "db_not_ready": "Database is not ready"
+  },
   "property": {
     "not_found": "Property not found",
     "invalid_filter": "Invalid filter format",

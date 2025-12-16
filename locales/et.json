@@ -53,6 +53,15 @@
       "property_updated": "Sinu kinnisvara uuendati edukalt: %s"
     }
   },
+  "files": {
+    "no_file": "Faili ei laaditud üles",
+    "invalid_type": "Vigane failitüüp",
+    "too_large": "Fail on liiga suur (max 5MB)",
+    "invalid_id": "Vigane faili ID",
+    "not_found": "Faili ei leitud",
+    "deleted": "Fail kustutati edukalt",
+    "db_not_ready": "Andmebaas ei ole valmis"
+  },
   "property": {
     "not_found": "Kinnisvara ei leitud",
     "invalid_filter": "Vigane filtri formaat",

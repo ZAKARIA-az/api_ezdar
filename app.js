@@ -1,5 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+
+dotenv.config();
+
 const connectDB = require('./config/db');
 const i18n = require('./config/i18n');
 const i18nMiddleware = require('./middlewares/i18nMiddleware');
@@ -10,8 +13,8 @@ const favoriteRoutes = require('./routes/favoriteRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const cookieParser = require('cookie-parser');
 const notificationRoutes = require('./routes/notificationRoutes');
+const fileRoutes = require('./routes/fileRoutes');
 
-dotenv.config();
 connectDB();
 
 const app = express();
@@ -41,6 +44,7 @@ app.use('/api/properties', propertyRoutes);
 app.use('/api/favorites', favoriteRoutes);
 /*app.use('/api/messages', messageRoutes);*/
 app.use('/api/notifications', notificationRoutes);
+app.use('/files', fileRoutes);
 
 app.use((err, req, res, next) => {
   const msg = (err && typeof err.message === 'string') ? err.message : '';

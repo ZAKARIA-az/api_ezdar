@@ -53,6 +53,15 @@
       "property_updated": "Votre propriété a été mise à jour avec succès : %s"
     }
   },
+  "files": {
+    "no_file": "Aucun fichier téléversé",
+    "invalid_type": "Type de fichier invalide",
+    "too_large": "Le fichier est trop volumineux (max 5MB)",
+    "invalid_id": "Identifiant de fichier invalide",
+    "not_found": "Fichier introuvable",
+    "deleted": "Fichier supprimé avec succès",
+    "db_not_ready": "La base de données n'est pas prête"
+  },
   "property": {
     "not_found": "Propriété non trouvée",
     "invalid_filter": "Format de filtre invalide",

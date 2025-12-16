@@ -9,10 +9,15 @@ class LanguageService {
     return LanguageService.supportedLanguages().includes(language);
   }
 
-  static async updateUserLanguage(userId, language) {
+  static validateLanguage(language) {
     if (!LanguageService.isSupported(language)) {
       throw new Error('language.invalid_code');
     }
+    return language;
+  }
+
+  static async updateUserLanguage(userId, language) {
+    LanguageService.validateLanguage(language);
 
     const user = await User.findByIdAndUpdate(
       userId,
