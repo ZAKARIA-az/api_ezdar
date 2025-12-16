@@ -1,7 +1,7 @@
 const multer = require('multer');
 const { getGridFsStorage } = require('../config/gridfs');
 
-const MAX_SIZE_BYTES = 5 * 1024 * 1024;
+const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = new Set(['image/png', 'image/jpeg']);
 
 const fileFilter = (req, file, cb) => {

@@ -44,9 +44,9 @@ router.delete(
 );
 
 // تحديث: محمي — المالك أو ادمن
-router.put('/:id', authMiddleware, authorizePropertyOwnerOrRole(role.OWNER), propertyController.updateProperty);
+router.put('/:id', authMiddleware, authorizePropertyOwnerOrRole(), propertyController.updateProperty);
 
 // حذف: محمي — المالك أو ادمن
-router.delete('/:id', authMiddleware, authorizePropertyOwnerOrRole(role.OWNER), propertyController.deleteProperty);
+router.delete('/:id', authMiddleware, authorizePropertyOwnerOrRole(), propertyController.deleteProperty);
 
 module.exports = router;
